@@ -5,6 +5,7 @@ use App\Http\Controllers\Assingment;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\RecordingController;
 use App\Http\Controllers\ResourceController;
+use App\Models\RecordingModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,5 @@ Route::post('/recording/add', [RecordingController::class, 'add']);
 Route::get('/recording/data/{id}', [RecordingController::class, 'recordingData']);
 Route::get('/recording/specificData/{id}', [RecordingController::class, 'specificRecordData']);
 // resources
-Route::post('/resource/add', [ResourceController::class, 'add']);
+Route::post('/resource/add', action: [ResourceController::class, 'add']);
 Route::get('/resource/data/{id}', [ResourceController::class, 'resourceData']);
-Route::get('/resource/specificData/{id}', [RecordingController::class, 'specificResourceData']);

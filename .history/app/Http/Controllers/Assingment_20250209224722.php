@@ -41,13 +41,6 @@ class Assingment extends Controller
             'assingments' => $assingments
         ]);
     }
-    public function specificAssingData($id)
-    {
-        $assingments = AssingmentModel::where('id', $id)->get();
-        return response()->json([
-            'assingments' => $assingments
-        ]);
-    }
 
     public function deleteAssingment($id)
     {

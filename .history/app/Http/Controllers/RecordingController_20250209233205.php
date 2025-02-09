@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AssingmentModel;
+use App\Models\RecordingModel;
 use Illuminate\Http\Request;
 
-class Assingment extends Controller
+class RecordingController extends Controller
 {
     public function add(Request $request)
     {
@@ -25,7 +25,7 @@ class Assingment extends Controller
         ]);
 
         // Create and save the assingment
-        $assingment = AssingmentModel::create($validated);
+        $assingment = RecordingModel::create($validated);
 
         // Return success response
         return response()->json([
@@ -33,30 +33,4 @@ class Assingment extends Controller
             'assingment' => $assingment
         ], 201);
     }
-
-    public function assingData($id)
-    {
-        $assingments = AssingmentModel::where('course_id', $id)->get();
-        return response()->json([
-            'assingments' => $assingments
-        ]);
-    }
-    public function specificAssingData($id)
-    {
-        $assingments = AssingmentModel::where('id', $id)->get();
-        return response()->json([
-            'assingments' => $assingments
-        ]);
-    }
-
-    public function deleteAssingment($id)
-    {
-        $assingment = AssingmentModel::find($id);
-        $assingment->delete();
-        return response()->json([
-            'message' => 'Assingment deleted successfully'
-        ]);
-    }
-
-
 }

@@ -43,7 +43,7 @@ class Assingment extends Controller
     }
     public function specificAssingData($id)
     {
-        $assingments = AssingmentModel::where('id', $id)->get();
+        $assingments = AssingmentModel::where('course_id', $id)->get();
         return response()->json([
             'assingments' => $assingments
         ]);
