@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('batch_no')->nullable();
             $table->string('admission_slip_no')->nullable();
             $table->string('password')->nullable();
+            $table->string('status')->default(0);
             $table->string('ex_1')->nullable();
             $table->string('ex_2')->nullable();
 

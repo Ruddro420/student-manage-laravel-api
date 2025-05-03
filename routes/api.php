@@ -36,10 +36,43 @@ Route::get('/recording/specificData/{id}', [RecordingController::class, 'specifi
 Route::post('/resource/add', [ResourceController::class, 'add']);
 Route::get('/resource/data/{id}', [ResourceController::class, 'resourceData']);
 Route::get('/resource/specificData/{id}', [RecordingController::class, 'specificResourceData']);
-
-Route::get('account/data', [StudenController::class, 'accountData']);
-Route::post('create/account', [StudenController::class, 'createAccount']);
-Route::get('account/delete', [StudenController::class, 'accountDelete']);
-Route::post('login/account', [StudenController::class, 'loginAccount']);
+// student register
+Route::get('/account/data', [StudenController::class, 'accountData']);
+Route::get('/student/data/{id}', [StudenController::class, 'getStudentData']);
+Route::post('/create/account', [StudenController::class, 'createAccount']);
+Route::get('/account/delete', [StudenController::class, 'accountDelete']);
+Route::post('/login/account', [StudenController::class, 'loginAccount']);
+// get student by batch and course id
+Route::get('/student/data/show/{courseName}/{batchNo}', [StudenController::class, 'studentByCourseBatch']);
+// check course
+Route::get('/student/course/show/{courseName}/{batchNo}', [AddcourseController::class, 'studentShowCourse']);
+// submit assingment
+Route::post('/submit/assingment', [StudenController::class, 'submitAssingment']);
+// get assingment data by student id
+Route::get('/submit/assingment/data/{id}', [StudenController::class, 'getAssingmentData']);
+// update student status active
+Route::post('/student/update/status/{id}', [StudenController::class, 'updateStatus']);
+// update student status active
+Route::post('/student/update/pending/status/{id}', [StudenController::class, 'updatePendingStatus']);
+// get student by ex_1
+Route::get('/student/ex_1/{id}', [StudenController::class, 'getStudentEx1']);
+// update marks and feedback by id
+Route::post('/student/update/marks/{id}', [StudenController::class, 'updateMarks']);
+// add student present and ansent into date
+Route::post('/student/present/absent', [StudenController::class, 'presentAbsent']);
+// total submit assingment by student id
+Route::get('/student/total/assingment/{id}', [StudenController::class, 'totalAssingment']);
+// total assingment by course name and batch no
+Route::get('/student/total/assingment/course/{courseName}/{batchNo}', [StudenController::class, 'totalAssingmentByCourse']);
+// total present and absent by student id
+Route::get('/student/total/present/absent/{id}', [StudenController::class, 'totalPresentAbsent']);
+// add payemnt 
+Route::post('/student/payment', [StudenController::class, 'addPayment']);
+// get total payment by student id
+Route::get('/student/payment/{id}', [StudenController::class, 'getPayment']);
+// get submitted assingment by student id
+Route::get('/student/assingment/{id}', [StudenController::class, 'getAssingment']);
+// payement history by student id
+Route::get('/student/payment/history/{id}', [StudenController::class, 'getPaymentHistory']);
 
 
