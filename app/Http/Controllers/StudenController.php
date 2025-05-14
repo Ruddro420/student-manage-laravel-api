@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\AssingmentModel;
 use App\Models\PaymentModel;
 use App\Models\PresentModel;
+use App\Models\RecordingModel;
+use App\Models\ResourceModel;
 use Illuminate\Http\Request;
 use App\Models\Studen;
 use App\Models\SubmitAssingment;
+use Illuminate\Support\Facades\DB;
 
 class StudenController extends Controller
 {
@@ -290,5 +293,83 @@ class StudenController extends Controller
     {
         $data = PaymentModel::where('s_id', $id)->get();
         return response()->json($data);
+    }
+    // assingment delete by id
+    public function deleteAssingment($id)
+    {
+        $data = AssingmentModel::find($id);
+        if ($data) {
+            $data->delete();
+            return response()->json([
+                'message' => 'Assingment deleted successfully'
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Assingment not found'
+            ], 404);
+        }
+    }
+    // delete recording by id
+    public function deleteRecording($id)
+    {
+        $data = RecordingModel::find($id);
+        if ($data) {
+            $data->delete();
+            return response()->json([
+                'message' => 'Recording deleted successfully'
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Recording not found'
+            ], 404);
+        }
+    }
+    // delete resource by id
+    public function deleteResource($id)
+    {
+        $data = ResourceModel::find($id);
+        if ($data) {
+            $data->delete();
+            return response()->json([
+                'message' => 'Resource deleted successfully'
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Resource not found'
+            ], 404);
+        }
+    }
+    // delete student by id
+    public function deleteStudent($id)
+    {
+        $data = Studen::find($id);
+        if ($data) {
+            $data->delete();
+            return response()->json([
+                'message' => 'Student deleted successfully'
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Student not found'
+            ], 404);
+        }
+    }
+    // get total sum of assingment number by course name and batch no sorting ascending order
+    public function totalAssignmentNumber($courseName, $batchNo)
+    {
+        $students = SubmitAssingment::select('s_id', 's_name', DB::raw('SUM(ex_1) as total_ex_1'))
+            ->where('c_name', $courseName)
+            ->where('batch_no', $batchNo)
+            ->groupBy('s_id', 's_name')
+            ->orderByDesc('total_ex_1')
+            ->get();
+
+        // Optionally get the overall total
+        $overallTotal = $students->sum('total_ex_1');
+
+        return response()->json([
+            'overall_total' => $overallTotal,
+            'students' => $students
+        ]);
     }
 }

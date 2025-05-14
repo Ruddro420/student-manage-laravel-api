@@ -78,4 +78,5 @@ class AddcourseController extends Controller
             ->first();
         return response()->json($data);
     }
+
 }

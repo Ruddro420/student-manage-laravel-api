@@ -74,5 +74,16 @@ Route::get('/student/payment/{id}', [StudenController::class, 'getPayment']);
 Route::get('/student/assingment/{id}', [StudenController::class, 'getAssingment']);
 // payement history by student id
 Route::get('/student/payment/history/{id}', [StudenController::class, 'getPaymentHistory']);
+// assingment delete by id
+Route::get('/student/assingment/delete/{id}', [StudenController::class, 'deleteAssingment']);
+// delete recording by id
+Route::get('/student/recording/delete/{id}', [StudenController::class, 'deleteRecording']);
+// delete resource by id
+Route::get('/student/resource/delete/{id}', [StudenController::class, 'deleteResource']);
+// delete student by id
+Route::get('/student/delete/{id}', [StudenController::class, 'deleteStudent']);
+// get total sum of assingment number by course name and batch no
+Route::get('/student/total/assingment/number/{courseName}/{batchNo}', [StudenController::class, 'totalAssignmentNumber']);
+
 
 
